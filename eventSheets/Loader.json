@@ -1,0 +1,39 @@
+{
+	"name": "Loader",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 972822769934356
+				}
+			],
+			"actions": [
+				{
+					"id": "set-width",
+					"objectClass": "TiledBackground",
+					"sid": 601070234927906,
+					"parameters": {
+						"width": "loadingprogress * LayoutWidth"
+					}
+				}
+			],
+			"sid": 594861110574662
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-loader-layout-complete",
+					"objectClass": "System",
+					"sid": 692806216047363
+				}
+			],
+			"actions": [],
+			"sid": 306368071581223
+		}
+	],
+	"sid": 192519571616803
+}
