@@ -36,6 +36,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "Spritefont2",
+			"name": "Sprite font",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "TiledBg",
 			"name": "Tiled Background",
 			"author": "Scirra",
@@ -50,8 +57,22 @@
 		},
 		{
 			"type": "behavior",
+			"id": "Physics",
+			"name": "Physics",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Tween",
 			"name": "Tween",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "scrollto",
+			"name": "Scroll To",
 			"author": "Scirra",
 			"bundled": false
 		}
@@ -59,12 +80,17 @@
 	"uniqueId": "7b2hqbhiwmp",
 	"objectTypes": {
 		"items": [
-			"Audio"
+			"Audio",
+			"Palette",
+			"Camera",
+			"Ball",
+			"Wall",
+			"SpriteFont"
 		],
 		"subfolders": [
 			{
 				"items": [
-					"Sprite",
+					"LogoSprite",
 					"TiledBackground"
 				],
 				"subfolders": [],
@@ -101,7 +127,8 @@
 		"items": [
 			"Loader",
 			"Layout",
-			"Title"
+			"Title",
+			"Repository"
 		],
 		"subfolders": []
 	},
@@ -138,6 +165,14 @@
 					"sid": 748630613865371,
 					"script-info": {
 						"purpose": "imports-for-events"
+					}
+				},
+				{
+					"name": "gameMethods.js",
+					"type": "application/javascript",
+					"sid": 792834848795830,
+					"script-info": {
+						"purpose": "none"
 					}
 				}
 			],
@@ -196,16 +231,7 @@
 			"subfolders": []
 		},
 		"font": {
-			"items": [
-				{
-					"name": "dnf-paste-by-DerpyNinjaFrog.ttf",
-					"type": "application/font-sfnt",
-					"sid": 238754968742981,
-					"file-info": {
-						"purpose": "none"
-					}
-				}
-			],
+			"items": [],
 			"subfolders": []
 		},
 		"icon": {
@@ -344,5 +370,5 @@
 	},
 	"viewportWidth": 320,
 	"viewportHeight": 200,
-	"firstLayout": "Title"
+	"firstLayout": "Layout"
 }

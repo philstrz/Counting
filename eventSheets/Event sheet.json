@@ -1,5 +1,181 @@
 {
 	"name": "Event sheet",
-	"events": [],
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Count",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 719068355622541
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Debug",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 111370252599613
+						}
+					],
+					"actions": [
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 586790000296098,
+							"parameters": {
+								"layer": "\"Debug\"",
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 950506113893227
+				}
+			],
+			"sid": 576625011218324
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Balls",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tap",
+							"objectClass": "Touch",
+							"sid": 457387183269345
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 580436267660641,
+							"parameters": {
+								"object-to-create": "Ball",
+								"layer": "\"Balls\"",
+								"x": "Touch.X",
+								"y": "Touch.Y",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 362100403943510
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 277771268777264
+						}
+					],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 709310108089484,
+							"parameters": {
+								"object-to-create": "Ball",
+								"layer": "\"Balls\"",
+								"x": "320 + random(300) - 150",
+								"y": "100",
+								"create-hierarchy": false,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 840124157882228
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Ball",
+							"sid": 666595090243152
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "Ball",
+							"sid": 943955095408524,
+							"parameters": {
+								"width": "0",
+								"height": "0"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "Ball",
+							"sid": 981799896410133,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "size",
+								"end-x": "8",
+								"end-y": "8",
+								"time": "0.5",
+								"ease": "easeoutsine",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "add-to-eventvar",
+							"objectClass": "System",
+							"sid": 616033155373087,
+							"disabled": true,
+							"parameters": {
+								"variable": "Count",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-text",
+							"objectClass": "SpriteFont",
+							"sid": 251194176827138,
+							"disabled": true,
+							"parameters": {
+								"text": "Count"
+							}
+						},
+						{
+							"type": "script",
+							"script": "increment(runtime);"
+						},
+						{
+							"id": "set-default-color",
+							"objectClass": "Ball",
+							"sid": 182435227257060,
+							"parameters": {
+								"color": "rgbEx(46, 66, 114)"
+							}
+						}
+					],
+					"sid": 338725769424152
+				}
+			],
+			"sid": 899373275688204
+		}
+	],
 	"sid": 778430735063539
 }

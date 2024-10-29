@@ -7,6 +7,8 @@ const Globals = {
 		width: 320,
 		height: 200,
 	},
+	count: 0,
+	size: 8,
 };
 
 // Export the global variables object
