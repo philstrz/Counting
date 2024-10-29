@@ -165,9 +165,9 @@
 						{
 							"id": "set-default-color",
 							"objectClass": "Ball",
-							"sid": 182435227257060,
+							"sid": 728006221215184,
 							"parameters": {
-								"color": "rgbEx(46, 66, 114)"
+								"color": "rgbEx255(46, 66, 114)"
 							}
 						}
 					],

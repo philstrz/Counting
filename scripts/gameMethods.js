@@ -6,6 +6,16 @@ let counter = null;
 let digits = [0, 0, 0, 0, 0, 0];
 let previous = [0, 0, 0, 0, 0, 0];
 
+let colors = [
+	"#2e4272",
+	"#aa7d39",
+	"#549431",
+	"#4f2c73",
+	"#aa3939",
+	"#aaaa39",
+	
+];
+
 export function increment(runtime)
 {
 	count += 1;
@@ -50,7 +60,15 @@ export function increment(runtime)
 	}
 	
 	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
-	let string = String(Globals.count);
+	
+	
+	let string = "";
+	for (let i = 0; i < places; i++)
+	{
+		string = "[/color]" + string;
+		string = String( digits[digits.length - i - 1] ) + string;
+		string = "[color=" + colors[i] + "]" + string;
+	}
 	counter.text = string;
 	
 	previous = digits;
