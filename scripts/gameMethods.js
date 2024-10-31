@@ -1,4 +1,5 @@
 import Globals from "./globals.js";
+import Color from "./utilities/color.js";
 
 let count = 0;
 let counter = null;
@@ -13,14 +14,36 @@ let colors = [
 	"#4f2c73",
 	"#aa3939",
 	"#aaaa39",
-	
 ];
 
-export function increment(runtime)
+export function add(runtime, n=1)
+{
+	if (n > 0)
+	{
+		for (let i = 0; i < n; i++)
+		{
+			increment(runtime);
+		}
+	}
+	// else if n < 0 decrement
+}
+
+function addBall(runtime)
 {
 	count += 1;
+	const ball = runtime.objects.Single.createInstance("Balls", 640, 640);
+	
+	ball.setSize(0, 0);
+	ball.behaviors.Tween.startTween("size", [16, 16], 0.5, "out-sine");
+	ball.colorRgb = Color.RGB(colors[0]);
+}
+
+function increment(runtime)
+{
+	addBall(runtime);
 	
 	
+
 	let places = 0;
 	let comparison = 1;
 	let number = count;

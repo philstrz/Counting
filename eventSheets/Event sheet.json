@@ -2,16 +2,6 @@
 	"name": "Event sheet",
 	"events": [
 		{
-			"eventType": "variable",
-			"name": "Count",
-			"type": "number",
-			"initialValue": "0",
-			"comment": "",
-			"isStatic": false,
-			"isConstant": false,
-			"sid": 719068355622541
-		},
-		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Debug",
@@ -39,6 +29,108 @@
 						}
 					],
 					"sid": 950506113893227
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 982005299346909,
+							"parameters": {
+								"interval-seconds": ".5"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Frames",
+							"sid": 243682465439932,
+							"parameters": {
+								"text": "floor(1 / dt)"
+							}
+						}
+					],
+					"sid": 519879980507388
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 131191813828862,
+							"parameters": {
+								"key": 192
+							}
+						},
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 637997937635076
+						}
+					],
+					"actions": [],
+					"sid": 653932235512610,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 856405934869228,
+									"parameters": {
+										"layer": "\"Debug\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 785659251356303,
+									"parameters": {
+										"layer": "\"Debug\"",
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 387848103697245
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 281433563162874
+								},
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 328782730280681,
+									"parameters": {
+										"layer": "\"Debug\""
+									},
+									"isInverted": true
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 970057617440002,
+									"parameters": {
+										"layer": "\"Debug\"",
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 903001681065977
+						}
+					]
 				}
 			],
 			"sid": 576625011218324
@@ -61,17 +153,8 @@
 					],
 					"actions": [
 						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 580436267660641,
-							"parameters": {
-								"object-to-create": "Ball",
-								"layer": "\"Balls\"",
-								"x": "Touch.X",
-								"y": "Touch.Y",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
+							"type": "script",
+							"script": "add(runtime);"
 						}
 					],
 					"sid": 362100403943510
@@ -87,17 +170,8 @@
 					],
 					"actions": [
 						{
-							"id": "create-object",
-							"objectClass": "System",
-							"sid": 709310108089484,
-							"parameters": {
-								"object-to-create": "Ball",
-								"layer": "\"Balls\"",
-								"x": "320 + random(300) - 150",
-								"y": "100",
-								"create-hierarchy": false,
-								"template-name": "\"\""
-							}
+							"type": "script",
+							"script": "add(runtime);"
 						}
 					],
 					"sid": 840124157882228
@@ -107,14 +181,14 @@
 					"conditions": [
 						{
 							"id": "on-created",
-							"objectClass": "Ball",
+							"objectClass": "Single",
 							"sid": 666595090243152
 						}
 					],
 					"actions": [
 						{
 							"id": "set-size",
-							"objectClass": "Ball",
+							"objectClass": "Single",
 							"sid": 943955095408524,
 							"parameters": {
 								"width": "0",
@@ -123,7 +197,7 @@
 						},
 						{
 							"id": "tween-two-properties",
-							"objectClass": "Ball",
+							"objectClass": "Single",
 							"sid": 981799896410133,
 							"behaviorType": "Tween",
 							"parameters": {
@@ -140,38 +214,45 @@
 							}
 						},
 						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 616033155373087,
-							"disabled": true,
-							"parameters": {
-								"variable": "Count",
-								"value": "1"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "SpriteFont",
-							"sid": 251194176827138,
-							"disabled": true,
-							"parameters": {
-								"text": "Count"
-							}
-						},
-						{
-							"type": "script",
-							"script": "increment(runtime);"
-						},
-						{
 							"id": "set-default-color",
-							"objectClass": "Ball",
+							"objectClass": "Single",
 							"sid": 728006221215184,
 							"parameters": {
 								"color": "rgbEx255(46, 66, 114)"
 							}
 						}
 					],
-					"sid": 338725769424152
+					"sid": 338725769424152,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 866423616037582,
+							"parameters": {
+								"key": 32
+							}
+						},
+						{
+							"id": "every-x-seconds",
+							"objectClass": "System",
+							"sid": 921825374808016,
+							"parameters": {
+								"interval-seconds": "0.1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "add(runtime);"
+						}
+					],
+					"sid": 361959976859253,
+					"disabled": true
 				}
 			],
 			"sid": 899373275688204

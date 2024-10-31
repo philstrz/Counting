@@ -9,6 +9,11 @@
 			"behaviorId": "scrollto",
 			"name": "ScrollTo",
 			"sid": 938088166449953
+		},
+		{
+			"behaviorId": "DragnDrop",
+			"name": "DragDrop",
+			"sid": 478449250683213
 		}
 	],
 	"effectTypes": [],

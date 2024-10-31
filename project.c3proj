@@ -57,6 +57,13 @@
 		},
 		{
 			"type": "behavior",
+			"id": "DragnDrop",
+			"name": "Drag & Drop",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
 			"id": "Physics",
 			"name": "Physics",
 			"author": "Scirra",
@@ -82,8 +89,7 @@
 		"items": [
 			"Audio",
 			"Palette",
-			"Camera",
-			"Ball",
+			"Single",
 			"Wall",
 			"SpriteFont"
 		],
@@ -114,6 +120,14 @@
 				],
 				"subfolders": [],
 				"name": "Title"
+			},
+			{
+				"items": [
+					"Camera",
+					"Frames"
+				],
+				"subfolders": [],
+				"name": "Debug"
 			}
 		]
 	},
@@ -199,6 +213,14 @@
 							"name": "audioManager.js",
 							"type": "application/javascript",
 							"sid": 636519227842261,
+							"script-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "color.js",
+							"type": "application/javascript",
+							"sid": 658492057222162,
 							"script-info": {
 								"purpose": "none"
 							}
