@@ -1,3 +1,4 @@
+import Coroutine from "./utilities/coroutine.js";
 
 // Import any other script files here, e.g.:
 // import * as myModule from "./mymodule.js";
@@ -17,6 +18,9 @@ runOnStartup(async runtime =>
 	
 	// Stop the browser from scrolling away
 	window.addEventListener("keydown", function(e) { if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) { e.preventDefault(); } }, false); 
+	
+	// Start coroutines
+	Coroutine.Init(runtime);
 });
 
 async function OnBeforeProjectStart(runtime)

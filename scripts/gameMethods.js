@@ -1,11 +1,20 @@
 import Globals from "./globals.js";
 import Color from "./utilities/color.js";
+import Coroutine from "./utilities/coroutine.js";
 
 let count = 0;
 let counter = null;
 
 let digits = [0, 0, 0, 0, 0, 0];
 let previous = [0, 0, 0, 0, 0, 0];
+
+const size = 16;
+
+const center = 
+{
+	x: 640,
+	y: 640,
+}
 
 let colors = [
 	"#2e4272",
@@ -34,7 +43,7 @@ function addBall(runtime)
 	const ball = runtime.objects.Single.createInstance("Balls", 640, 640);
 	
 	ball.setSize(0, 0);
-	ball.behaviors.Tween.startTween("size", [16, 16], 0.5, "out-sine");
+	ball.behaviors.Tween.startTween("size", [size, size], 0.5, "out-sine");
 	ball.colorRgb = Color.RGB(colors[0]);
 }
 
@@ -88,7 +97,7 @@ function checkDigits(runtime)
 	if (digits[4] > previous[4])
 	{
 		console.log("ten!");
-		assembleTen(runtime);
+		new Coroutine(assembleTen(runtime), "ten");
 	}
 	
 	
@@ -119,7 +128,29 @@ function checkDigits(runtime)
 	*/
 }
 
-function assembleTen(runtime)
+function* assembleTen(runtime)
 {
+	const singles = runtime.objects.Single.getAllInstances();
+	console.log(singles);
 	
+	const time = 0.25;
+	
+	let y = center.y;
+	let x = center.x - 4.5 * size;
+	for (let i = 0; i < 10; i++)
+	{
+		singles[i].behaviors.Tween.startTween("position", [x, y], time, "linear");
+		x += size;
+	}
+	yield Coroutine.Wait(time);
+	
+	x = center.x;
+	for (let i = 0; i < 10; i++)
+	{
+		singles[i].destroy();
+	}
+	const ten = runtime.objects.Ten.createInstance("Balls", x, y);
+	ten.colorRgb = Color.RGB(colors[1]);
+	
+	return;
 }

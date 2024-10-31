@@ -91,7 +91,8 @@
 			"Palette",
 			"Single",
 			"Wall",
-			"SpriteFont"
+			"SpriteFont",
+			"Ten"
 		],
 		"subfolders": [
 			{
