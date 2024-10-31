@@ -42,8 +42,12 @@ function increment(runtime)
 {
 	addBall(runtime);
 	
-	
+	checkDigits(runtime);
+}
 
+function checkDigits(runtime)
+{
+	// Convert the number into an array of digits
 	let places = 0;
 	let comparison = 1;
 	let number = count;
@@ -62,10 +66,39 @@ function increment(runtime)
 			break;
 		}
 	}
-	console.log(digits, places);
+	console.log(digits, places, previous);
+	
+	// Update the counter
+	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
+	
+	let string = "";
+	for (let i = 0; i < places; i++)
+	{
+		string = "[/color]" + string;
+		string = String( digits[digits.length - i - 1] ) + string;
+		string = "[color=" + colors[i] + "]" + string;
+	}
+	counter.text = string;
 	
 	
 	
+	// TODO check for tens etc.
+	
+	// check for tens
+	if (digits[4] > previous[4])
+	{
+		console.log("ten!");
+		assembleTen(runtime);
+	}
+	
+	
+	// Store digits
+	for (let i = 0; i < digits.length; i++)
+	{
+		previous[i] = digits[i];
+	}
+	
+	/*
 	if (count % 10 == 0)
 	{
 		const tens = Math.floor(count / 10) - 1;
@@ -82,17 +115,11 @@ function increment(runtime)
 		//balls[tens*10].behaviors.Physics.createDistanceJoint(-1, balls[9 + tens*10], -1, 1, 100);
 	}
 	
-	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
 	
+	*/
+}
+
+function assembleTen(runtime)
+{
 	
-	let string = "";
-	for (let i = 0; i < places; i++)
-	{
-		string = "[/color]" + string;
-		string = String( digits[digits.length - i - 1] ) + string;
-		string = "[color=" + colors[i] + "]" + string;
-	}
-	counter.text = string;
-	
-	previous = digits;
 }
