@@ -88,44 +88,26 @@ function checkDigits(runtime)
 		string = "[color=" + colors[i] + "]" + string;
 	}
 	counter.text = string;
-	
-	
-	
-	// TODO check for tens etc.
-	
-	// check for tens
+		
+	// Check for 10s
 	if (digits[4] > previous[4])
 	{
 		console.log("ten!");
 		new Coroutine(assembleTen(runtime), "ten");
 	}
 	
-	
+	// Check for 100s
+	if (digits[3] > previous[3])
+	{
+		console.log("hundred!");
+		//new Coroutine(assembleTen(runtime), "ten");
+	}
+		
 	// Store digits
 	for (let i = 0; i < digits.length; i++)
 	{
 		previous[i] = digits[i];
 	}
-	
-	/*
-	if (count % 10 == 0)
-	{
-		const tens = Math.floor(count / 10) - 1;
-		
-		const balls = runtime.objects.Ball.getAllInstances();
-		for (let i = 0; i < 9; i++)
-		{
-			balls[i + tens*10].setPosition(300+Globals.size*i, 100);
-			balls[i + tens*10 + 1].setPosition(300+Globals.size*(i+1), 100);
-			balls[i + tens*10].behaviors.Physics.createDistanceJoint(-1, balls[i + tens*10 + 1], -1, 1, 100);
-		}
-		//balls[tens*10].setPosition(300+Globals.size, 100);
-		//balls[9 + tens*10].setPosition(300+Globals.size, 100+Globals.size);
-		//balls[tens*10].behaviors.Physics.createDistanceJoint(-1, balls[9 + tens*10], -1, 1, 100);
-	}
-	
-	
-	*/
 }
 
 function* assembleTen(runtime)
@@ -139,6 +121,7 @@ function* assembleTen(runtime)
 	let x = center.x - 4.5 * size;
 	for (let i = 0; i < 10; i++)
 	{
+		singles[i].behaviors.Physics.isEnabled = false;
 		singles[i].behaviors.Tween.startTween("position", [x, y], time, "linear");
 		x += size;
 	}
