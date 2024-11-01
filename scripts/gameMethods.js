@@ -5,8 +5,8 @@ import Coroutine from "./utilities/coroutine.js";
 let count = 0;
 let counter = null;
 
-let digits = [0, 0, 0, 0, 0, 0];
-let previous = [0, 0, 0, 0, 0, 0];
+let digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let previous = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 const size = 16;
 
@@ -23,6 +23,12 @@ let colors = [
 	"#4f2c73",
 	"#aa3939",
 	"#aaaa39",
+	"#061539",
+	"#553300",
+	"#1a4a00",
+	"#1f0439",
+	"#550000",
+	"#555500",
 ];
 
 export function add(runtime, n=1)
@@ -88,20 +94,18 @@ function checkDigits(runtime)
 		string = "[color=" + colors[i] + "]" + string;
 	}
 	counter.text = string;
-		
-	// Check for 10s
-	if (digits[4] > previous[4])
+	
+	// Check for powers of 10
+	let power = 0;
+	for (let i = digits.length - 2; i >=0; i--)
 	{
-		console.log("ten!");
-		new Coroutine(assembleTen(runtime), "ten");
+		power++;
+		if (digits[i] > previous[i])
+		{			
+			new Coroutine(assembleTen(runtime, power));
+		}
 	}
 	
-	// Check for 100s
-	if (digits[3] > previous[3])
-	{
-		console.log("hundred!");
-		//new Coroutine(assembleTen(runtime), "ten");
-	}
 		
 	// Store digits
 	for (let i = 0; i < digits.length; i++)
@@ -110,31 +114,54 @@ function checkDigits(runtime)
 	}
 }
 
-function* assembleTen(runtime) 
+function* assembleTen(runtime, power) 
 {
-	const singles = runtime.objects.Single.getAllInstances();
-	
+	// How long the assembly takes
 	const time = 0.1;
 	
-	let y = center.y;
-	let x = center.x - 4.5 * size;
-	for (let i = 0; i < 10; i++)
-	{
-		singles[i].behaviors.Physics.isEnabled = false;
-		singles[i].behaviors.Tween.startTween("position", [x, y], time, "linear");
-		x += size;
-	}
-	yield Coroutine.Wait(time);
+	// Built out of singles
+	const singles = runtime.objects.Single.getAllInstances();
 	
-	x = center.x;
-	for (let i = 0; i < 10; i++)
+	// Which objects to assemble
+	//const n = digits[i];
+	const n = count;
+	
+	let interval = 1;
+	for (let i = 0; i < power; i++) { interval *= 10};
+	
+	const first = n - interval;
+	const last = n - 1;
+			
+	// How to assemble them
+	const r = Math.floor(power / 2);
+	const c = r + (power % 2);
+	
+	let rows = 1, cols = 1;
+	for (let i = 0; i < r; i++) rows *= 10;
+	for (let i = 0; i < c; i++) cols *= 10;
+	
+	let y = center.y - (rows/2 - 0.5) * size;
+	let x = center.x - (cols/2 - 0.5) * size;
+	
+	for (let i = 0; i < rows; i++)
 	{
-		singles[i].destroy();
+		x = center.x - (cols/2 - 0.5) * size;
+		for (let j = 0; j < cols; j++)
+		{
+			const index = i * 10 + j + first;
+			singles[index].behaviors.Physics.isEnabled = false;
+			singles[index].behaviors.Tween.startTween("position", [x, y], time, "linear");
+			x += size;
+		}
+		y += size;
 	}
-	const ten = runtime.objects.Ten.createInstance("Balls", x, y, true);
-	for (const child of ten.allChildren())
+	
+	yield Coroutine.Wait(time);
+		
+	for (let i = first; i <= last; i++)
 	{
-		child.colorRgb = Color.RGB(colors[1]);
+		singles[i].behaviors.Physics.isEnabled = true;
+		singles[i].colorRgb = Color.RGB(colors[power]);
 	}
 	
 	return;
