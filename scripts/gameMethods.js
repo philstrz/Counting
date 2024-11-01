@@ -110,12 +110,11 @@ function checkDigits(runtime)
 	}
 }
 
-function* assembleTen(runtime)
+function* assembleTen(runtime) 
 {
 	const singles = runtime.objects.Single.getAllInstances();
-	console.log(singles);
 	
-	const time = 0.25;
+	const time = 0.1;
 	
 	let y = center.y;
 	let x = center.x - 4.5 * size;
@@ -132,8 +131,11 @@ function* assembleTen(runtime)
 	{
 		singles[i].destroy();
 	}
-	const ten = runtime.objects.Ten.createInstance("Balls", x, y);
-	ten.colorRgb = Color.RGB(colors[1]);
+	const ten = runtime.objects.Ten.createInstance("Balls", x, y, true);
+	for (const child of ten.allChildren())
+	{
+		child.colorRgb = Color.RGB(colors[1]);
+	}
 	
 	return;
 }

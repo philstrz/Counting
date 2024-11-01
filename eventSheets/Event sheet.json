@@ -253,6 +253,27 @@
 					],
 					"sid": 361959976859253,
 					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Ten",
+							"sid": 682962729340955
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-layer",
+							"objectClass": "Ten",
+							"sid": 913835222771854,
+							"parameters": {
+								"layer": "\"Debug\""
+							}
+						}
+					],
+					"sid": 844934855909549
 				}
 			],
 			"sid": 899373275688204

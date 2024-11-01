@@ -92,7 +92,9 @@
 			"Single",
 			"Wall",
 			"SpriteFont",
-			"Ten"
+			"TenOld",
+			"Ten",
+			"Node"
 		],
 		"subfolders": [
 			{

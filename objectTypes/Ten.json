@@ -1,19 +1,14 @@
 {
 	"name": "Ten",
 	"plugin-id": "Sprite",
-	"sid": 499304011967129,
+	"sid": 245594587571343,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [
 		{
-			"behaviorId": "Physics",
-			"name": "Physics",
-			"sid": 782847443513292
-		},
-		{
 			"behaviorId": "Tween",
 			"name": "Tween",
-			"sid": 901828857796759
+			"sid": 894176210023886
 		}
 	],
 	"effectTypes": [],
@@ -30,49 +25,13 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 6261255,
-						"collisionPoly": {
-							"points": [
-								0.03125,
-								0,
-								0.96875,
-								0,
-								0.98125,
-								0.0625,
-								0.99375,
-								0.1875,
-								1,
-								0.3125,
-								1,
-								0.6875,
-								0.99375,
-								0.8125,
-								0.98125,
-								0.9375,
-								0.96875,
-								1,
-								0.03125,
-								1,
-								0.01875,
-								0.9375,
-								0.00625,
-								0.8125,
-								0,
-								0.6875,
-								0,
-								0.3125,
-								0.00625,
-								0.1875,
-								0.01875,
-								0.0625
-							]
-						},
+						"imageSpriteId": 9262257,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 663155342270008,
+				"sid": 794458366396320,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
