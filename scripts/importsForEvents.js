@@ -1,2 +1,2 @@
 import Globals from "./globals.js";
-import { add, addBall } from "./gameMethods.js";
+import { addN, addBall } from "./gameMethods.js";

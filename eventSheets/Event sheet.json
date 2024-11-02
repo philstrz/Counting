@@ -131,6 +131,81 @@
 							"sid": 903001681065977
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 650854863619312,
+							"parameters": {
+								"key": 97
+							}
+						},
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 605411540732714
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "addN(runtime, 10);"
+						}
+					],
+					"sid": 937804629218127
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 258458611482553,
+							"parameters": {
+								"key": 98
+							}
+						},
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 835549852839278
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "addN(runtime, 100);"
+						}
+					],
+					"sid": 540730674015157
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 883647982893644,
+							"parameters": {
+								"key": 99
+							}
+						},
+						{
+							"id": "is-in-preview",
+							"objectClass": "System",
+							"sid": 867762779240455
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "addN(runtime, 1000);"
+						}
+					],
+					"sid": 102721760253170
 				}
 			],
 			"sid": 576625011218324
@@ -209,7 +284,7 @@
 					"actions": [
 						{
 							"type": "script",
-							"script": "add(runtime);"
+							"script": "addBall(runtime);"
 						}
 					],
 					"sid": 840124157882228

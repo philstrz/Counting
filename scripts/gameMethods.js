@@ -31,13 +31,13 @@ let colors = [
 	"#555500",
 ];
 
-export function add(runtime, n=1)
+export function addN(runtime, n=1)
 {
 	if (n > 0)
 	{
 		for (let i = 0; i < n; i++)
 		{
-			increment(runtime);
+			addBall(runtime);
 		}
 	}
 	// else if n < 0 decrement
@@ -45,23 +45,19 @@ export function add(runtime, n=1)
 
 export function addBall(runtime, x=null, y=null)
 {
-	if (x === null) x = Math.random() * 160 - 80;
-	if (y === null) y = 0;
+	if (x === null) x = 640 + Math.random() * 160 - 80;
+	if (y === null) y = 640;
 
 	count += 1;
-	const ball = runtime.objects.Single.createInstance("Balls", 640 + x, 640 + y, true);
+	const ball = runtime.objects.Single.createInstance("Balls", x, y, true);
 	
 	ball.setSize(0, 0);
 	ball.behaviors.Tween.startTween("size", [size, size], 0.5, "out-sine");
 	ball.colorRgb = Color.RGB(colors[0]);
-}
-
-function increment(runtime)
-{
-	addBall(runtime);
 	
 	checkDigits(runtime);
 }
+
 
 function checkDigits(runtime)
 {
@@ -152,7 +148,7 @@ function* assembleTen(runtime, power)
 		{
 			const index = i * 10 + j + first;
 			singles[index].behaviors.Physics.isEnabled = false;
-			singles[index].behaviors.Tween.startTween("position", [x, y], time, "linear");
+			singles[index].behaviors.Tween.startTween("position", [x, y], time, "in-cubic");
 			x += size;
 		}
 		y += size;
