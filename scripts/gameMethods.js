@@ -43,10 +43,13 @@ export function add(runtime, n=1)
 	// else if n < 0 decrement
 }
 
-function addBall(runtime)
+export function addBall(runtime, x=null, y=null)
 {
+	if (x === null) x = Math.random() * 160 - 80;
+	if (y === null) y = 0;
+
 	count += 1;
-	const ball = runtime.objects.Single.createInstance("Balls", 640, 640);
+	const ball = runtime.objects.Single.createInstance("Balls", 640 + x, 640 + y, true);
 	
 	ball.setSize(0, 0);
 	ball.behaviors.Tween.startTween("size", [size, size], 0.5, "out-sine");
@@ -106,7 +109,6 @@ function checkDigits(runtime)
 		}
 	}
 	
-		
 	// Store digits
 	for (let i = 0; i < digits.length; i++)
 	{
@@ -123,7 +125,6 @@ function* assembleTen(runtime, power)
 	const singles = runtime.objects.Single.getAllInstances();
 	
 	// Which objects to assemble
-	//const n = digits[i];
 	const n = count;
 	
 	let interval = 1;
@@ -143,6 +144,7 @@ function* assembleTen(runtime, power)
 	let y = center.y - (rows/2 - 0.5) * size;
 	let x = center.x - (cols/2 - 0.5) * size;
 	
+	// Build the bunch in rows and columns
 	for (let i = 0; i < rows; i++)
 	{
 		x = center.x - (cols/2 - 0.5) * size;
@@ -156,8 +158,10 @@ function* assembleTen(runtime, power)
 		y += size;
 	}
 	
+	// Wait for the orbs to get into place
 	yield Coroutine.Wait(time);
 		
+	// Change color and reactivate physics
 	for (let i = first; i <= last; i++)
 	{
 		singles[i].behaviors.Physics.isEnabled = true;

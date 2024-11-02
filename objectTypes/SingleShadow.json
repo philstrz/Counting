@@ -1,16 +1,10 @@
 {
-	"name": "Node",
+	"name": "SingleShadow",
 	"plugin-id": "Sprite",
-	"sid": 107168185842294,
+	"sid": 529068556982709,
 	"isGlobal": false,
 	"instanceVariables": [],
-	"behaviorTypes": [
-		{
-			"behaviorId": "Physics",
-			"name": "Physics",
-			"sid": 823807271502172
-		}
-	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -25,7 +19,7 @@
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 7740167,
+						"imageSpriteId": 2492997,
 						"collisionPoly": {
 							"points": [
 								0.3125,
@@ -67,7 +61,7 @@
 						"tag": ""
 					}
 				],
-				"sid": 767322629170934,
+				"sid": 166434521271744,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
