@@ -181,31 +181,6 @@
 						}
 					],
 					"sid": 540730674015157
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-key-pressed",
-							"objectClass": "Keyboard",
-							"sid": 883647982893644,
-							"parameters": {
-								"key": 99
-							}
-						},
-						{
-							"id": "is-in-preview",
-							"objectClass": "System",
-							"sid": 867762779240455
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"script": "addN(runtime, 1000);"
-						}
-					],
-					"sid": 102721760253170
 				}
 			],
 			"sid": 576625011218324
@@ -268,9 +243,52 @@
 						{
 							"type": "script",
 							"script": "addBall(runtime, localVars.touchX, localVars.touchY);"
+						},
+						{
+							"type": "script",
+							"script": "console.log(\"click\");"
 						}
 					],
 					"sid": 362100403943510
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-double-tap",
+							"objectClass": "Touch",
+							"sid": 431026562235116
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 823744299485895,
+							"parameters": {
+								"variable": "touchX",
+								"value": "Touch.X"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 871019223737364,
+							"parameters": {
+								"variable": "touchY",
+								"value": "Touch.Y"
+							}
+						},
+						{
+							"type": "script",
+							"script": "addBall(runtime, localVars.touchX, localVars.touchY);"
+						},
+						{
+							"type": "script",
+							"script": "console.log(\"click\");"
+						}
+					],
+					"sid": 742831911613378
 				},
 				{
 					"eventType": "block",
@@ -432,6 +450,33 @@
 				}
 			],
 			"sid": 426407053161690
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Set camera",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 597032897340405
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "moveCamera(runtime);"
+						}
+					],
+					"sid": 886609451184188
+				}
+			],
+			"sid": 904080289558494
 		}
 	],
 	"sid": 778430735063539

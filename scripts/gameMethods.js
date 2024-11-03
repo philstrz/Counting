@@ -12,8 +12,8 @@ const size = 16;
 
 const center = 
 {
-	x: 640,
-	y: 640,
+	x: 1280,
+	y: 1000,
 }
 
 let colors = [
@@ -45,8 +45,8 @@ export function addN(runtime, n=1)
 
 export function addBall(runtime, x=null, y=null)
 {
-	if (x === null) x = 640 + Math.random() * 160 - 80;
-	if (y === null) y = 640;
+	if (x === null) x = center.x + Math.random() * 160 - 80;
+	if (y === null) y = center.y;
 
 	count += 1;
 	const ball = runtime.objects.Single.createInstance("Balls", x, y, true);
@@ -56,6 +56,39 @@ export function addBall(runtime, x=null, y=null)
 	ball.colorRgb = Color.RGB(colors[0]);
 	
 	checkDigits(runtime);
+	moveCamera(runtime);
+}
+
+const tanPiOver8 = Math.sqrt(2) - 1;
+const ratio = 23 / 32;
+const bottom = 1280;
+export function moveCamera(runtime)
+{
+	// Move the center up over time
+	center.y = bottom - (280 + Math.sqrt(count) * size / 2);
+
+	const x = center.x;
+	//const y = center.y + 60;
+	const y = center.y;
+	const z = (bottom - center.y) / tanPiOver8 * ratio;
+
+	const cam = {
+		x: x,
+		y: y,
+		z: z,
+	};
+	const look = {
+		x: x,
+		y: y,
+		z: 0,
+	};
+	const up = {
+		x: 0,
+		y: 1,
+		z: 0,
+	}
+
+	runtime.objects.Camera3D.lookAtPosition(cam.x, cam.y, cam.z, look.x, look.y, look.z, up.x, up.y, up.z);
 }
 
 
@@ -80,7 +113,6 @@ function checkDigits(runtime)
 			break;
 		}
 	}
-	console.log(digits, places, previous);
 	
 	// Update the counter
 	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
@@ -141,12 +173,13 @@ function* assembleTen(runtime, power)
 	let x = center.x - (cols/2 - 0.5) * size;
 	
 	// Build the bunch in rows and columns
+	console.log("rows " + rows + " cols " + cols);
 	for (let i = 0; i < rows; i++)
 	{
 		x = center.x - (cols/2 - 0.5) * size;
 		for (let j = 0; j < cols; j++)
 		{
-			const index = i * 10 + j + first;
+			const index = i * cols + j + first;
 			singles[index].behaviors.Physics.isEnabled = false;
 			singles[index].behaviors.Tween.startTween("position", [x, y], time, "in-cubic");
 			x += size;
@@ -161,6 +194,7 @@ function* assembleTen(runtime, power)
 	for (let i = first; i <= last; i++)
 	{
 		singles[i].behaviors.Physics.isEnabled = true;
+		singles[i].behaviors.Physics.setVelocity(0, 0);
 		singles[i].colorRgb = Color.RGB(colors[power]);
 	}
 	
