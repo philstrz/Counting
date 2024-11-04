@@ -223,9 +223,9 @@
 					},
 					"world": {
 						"x": 1280,
-						"y": 1200,
+						"y": 1360,
 						"width": 2560,
-						"height": 40,
+						"height": 200,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -272,10 +272,10 @@
 						"expanded": true
 					},
 					"world": {
-						"x": 2240,
-						"y": 1220,
-						"width": 1000,
-						"height": 1000,
+						"x": 2560,
+						"y": 1300,
+						"width": 1500,
+						"height": 5000,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -322,10 +322,10 @@
 						"expanded": true
 					},
 					"world": {
-						"x": 320,
-						"y": 1220,
-						"width": 1000,
-						"height": 1000,
+						"x": 0,
+						"y": 1300,
+						"width": 1500,
+						"height": 5000,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -362,6 +362,82 @@
 			"scaleRate": 1,
 			"forceOwnTexture": false,
 			"renderingMode": "3d",
+			"drawOrder": "z-order",
+			"useRenderCells": false,
+			"blendMode": "normal",
+			"zElevation": 0,
+			"global": false
+		},
+		{
+			"name": "UI",
+			"overriden": 0,
+			"subLayers": [],
+			"instances": [
+				{
+					"type": "Reset",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 21,
+					"sid": 237927854495328,
+					"tags": "",
+					"instanceVariables": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"instanceFolderItem": {
+						"sid": 237927854495328,
+						"expanded": true
+					},
+					"world": {
+						"x": 1408,
+						"y": 1000,
+						"width": 60,
+						"height": 60,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				}
+			],
+			"sid": 970014316294325,
+			"effectTypes": [],
+			"isInitiallyVisible": true,
+			"isInitiallyInteractive": true,
+			"isHTMLElementsLayer": false,
+			"color": [
+				1,
+				1,
+				1,
+				1
+			],
+			"backgroundColor": [
+				0.3686274509803922,
+				0.3686274509803922,
+				0.3686274509803922,
+				1
+			],
+			"isTransparent": true,
+			"parallaxX": 1,
+			"parallaxY": 1,
+			"scaleRate": 1,
+			"forceOwnTexture": false,
+			"renderingMode": "2d",
 			"drawOrder": "z-order",
 			"useRenderCells": false,
 			"blendMode": "normal",
@@ -440,7 +516,7 @@
 						"DragDrop": {
 							"properties": {
 								"axes": "both",
-								"enabled": true
+								"enabled": false
 							}
 						}
 					},

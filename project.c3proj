@@ -1,7 +1,7 @@
 {
 	"projectFormatVersion": 1,
 	"savedWithRelease": 40702,
-	"name": "GameTemplate",
+	"name": "Counting",
 	"runtime": "c3",
 	"useWorker": "auto",
 	"bundleAddons": false,
@@ -100,7 +100,8 @@
 			"Wall",
 			"SpriteFont",
 			"SingleShadow",
-			"Camera3D"
+			"Camera3D",
+			"Reset"
 		],
 		"subfolders": [
 			{

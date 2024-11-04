@@ -243,10 +243,6 @@
 						{
 							"type": "script",
 							"script": "addBall(runtime, localVars.touchX, localVars.touchY);"
-						},
-						{
-							"type": "script",
-							"script": "console.log(\"click\");"
 						}
 					],
 					"sid": 362100403943510
@@ -282,10 +278,6 @@
 						{
 							"type": "script",
 							"script": "addBall(runtime, localVars.touchX, localVars.touchY);"
-						},
-						{
-							"type": "script",
-							"script": "console.log(\"click\");"
 						}
 					],
 					"sid": 742831911613378
@@ -306,84 +298,6 @@
 						}
 					],
 					"sid": 840124157882228
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-created",
-							"objectClass": "Single",
-							"sid": 666595090243152
-						}
-					],
-					"actions": [
-						{
-							"id": "set-size",
-							"objectClass": "Single",
-							"sid": 943955095408524,
-							"parameters": {
-								"width": "0",
-								"height": "0"
-							}
-						},
-						{
-							"id": "tween-two-properties",
-							"objectClass": "Single",
-							"sid": 981799896410133,
-							"behaviorType": "Tween",
-							"parameters": {
-								"tags": "\"\"",
-								"property": "size",
-								"end-x": "8",
-								"end-y": "8",
-								"time": "0.5",
-								"ease": "easeoutsine",
-								"destroy-on-complete": "no",
-								"loop": "no",
-								"ping-pong": "no",
-								"repeat-count": "1"
-							}
-						},
-						{
-							"id": "set-default-color",
-							"objectClass": "Single",
-							"sid": 728006221215184,
-							"parameters": {
-								"color": "rgbEx255(46, 66, 114)"
-							}
-						}
-					],
-					"sid": 338725769424152,
-					"disabled": true
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "key-is-down",
-							"objectClass": "Keyboard",
-							"sid": 866423616037582,
-							"parameters": {
-								"key": 32
-							}
-						},
-						{
-							"id": "every-x-seconds",
-							"objectClass": "System",
-							"sid": 921825374808016,
-							"parameters": {
-								"interval-seconds": "0.1"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "script",
-							"script": "add(runtime);"
-						}
-					],
-					"sid": 361959976859253,
-					"disabled": true
 				}
 			],
 			"sid": 899373275688204
@@ -477,6 +391,104 @@
 				}
 			],
 			"sid": 904080289558494
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Reset",
+			"description": "Button to reset the scene",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 964631883332768,
+							"parameters": {
+								"object": "Reset"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "reset(runtime);"
+						}
+					],
+					"sid": 641137393214876
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 550326321062765
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "Reset",
+							"sid": 194836065324803,
+							"parameters": {
+								"width": "0",
+								"height": "0"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 242181329332599,
+							"parameters": {
+								"seconds": "60"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "Reset",
+							"sid": 629778633969829,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "size",
+								"end-x": "30",
+								"end-y": "30",
+								"time": "1",
+								"ease": "easeincubic",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 676022650919951
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "cursor-is-over-object",
+							"objectClass": "Mouse",
+							"sid": 886345376038739,
+							"parameters": {
+								"object": "Reset"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "hoverReset();"
+						}
+					],
+					"sid": 432921988956295
+				}
+			],
+			"sid": 596043405150638
 		}
 	],
 	"sid": 778430735063539

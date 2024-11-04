@@ -19,17 +19,52 @@ const center =
 let colors = [
 	"#2e4272",
 	"#aa7d39",
+	"#aa3939",
 	"#549431",
 	"#4f2c73",
-	"#aa3939",
 	"#aaaa39",
 	"#061539",
 	"#553300",
+	"#550000",
 	"#1a4a00",
 	"#1f0439",
-	"#550000",
 	"#555500",
 ];
+
+let hovering = false;
+export function gameTick(runtime)
+{
+	const hover = runtime.objects.Reset.getFirstInstance();
+	if (!hover) return;
+	if (hovering)
+	{
+		hover.colorRgb = Color.RGB(colors[1]);
+		hovering = false;
+	}
+	else
+	{
+		hover.colorRgb = Color.RGB(colors[0]);
+	}
+}
+export function hoverReset()
+{
+	hovering = true;
+	console.log("hover");
+}
+
+export function reset(runtime)
+{
+	for (const single of runtime.objects.Single.getAllInstances())
+	{
+		single.destroy();
+	}
+
+	count = 0;
+	digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	previous = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	moveCamera(runtime);
+	updateCounter(runtime, 1);
+}
 
 export function addN(runtime, n=1)
 {
@@ -45,8 +80,8 @@ export function addN(runtime, n=1)
 
 export function addBall(runtime, x=null, y=null)
 {
-	if (x === null) x = center.x + Math.random() * 160 - 80;
-	if (y === null) y = center.y;
+	if (x === null) x = center.x + Math.random() * (bottom - center.y) * (Math.random() * 2 - 1) * 2;
+	if (y === null) y = center.y - (bottom - center.y) * 0.9;
 
 	count += 1;
 	const ball = runtime.objects.Single.createInstance("Balls", x, y, true);
@@ -60,17 +95,16 @@ export function addBall(runtime, x=null, y=null)
 }
 
 const tanPiOver8 = Math.sqrt(2) - 1;
-const ratio = 23 / 32;
 const bottom = 1280;
 export function moveCamera(runtime)
 {
 	// Move the center up over time
-	center.y = bottom - (280 + Math.sqrt(count) * size / 2);
+	center.y = bottom - (Math.sqrt(count + 80) * size);
 
 	const x = center.x;
 	//const y = center.y + 60;
 	const y = center.y;
-	const z = (bottom - center.y) / tanPiOver8 * ratio;
+	const z = (bottom - center.y) / tanPiOver8;
 
 	const cam = {
 		x: x,
@@ -91,6 +125,19 @@ export function moveCamera(runtime)
 	runtime.objects.Camera3D.lookAtPosition(cam.x, cam.y, cam.z, look.x, look.y, look.z, up.x, up.y, up.z);
 }
 
+function updateCounter(runtime, places)
+{
+	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
+	
+	let string = "";
+	for (let i = 0; i < places; i++)
+	{
+		string = "[/color]" + string;
+		string = String( digits[digits.length - i - 1] ) + string;
+		string = "[color=" + colors[i] + "]" + string;
+	}
+	counter.text = string;
+}
 
 function checkDigits(runtime)
 {
@@ -115,16 +162,7 @@ function checkDigits(runtime)
 	}
 	
 	// Update the counter
-	if (!counter) counter = runtime.objects.SpriteFont.getFirstInstance();
-	
-	let string = "";
-	for (let i = 0; i < places; i++)
-	{
-		string = "[/color]" + string;
-		string = String( digits[digits.length - i - 1] ) + string;
-		string = "[color=" + colors[i] + "]" + string;
-	}
-	counter.text = string;
+	updateCounter(runtime, places);
 	
 	// Check for powers of 10
 	let power = 0;
@@ -147,7 +185,7 @@ function checkDigits(runtime)
 function* assembleTen(runtime, power) 
 {
 	// How long the assembly takes
-	const time = 0.1;
+	const time = 0.5;
 	
 	// Built out of singles
 	const singles = runtime.objects.Single.getAllInstances();
@@ -173,7 +211,6 @@ function* assembleTen(runtime, power)
 	let x = center.x - (cols/2 - 0.5) * size;
 	
 	// Build the bunch in rows and columns
-	console.log("rows " + rows + " cols " + cols);
 	for (let i = 0; i < rows; i++)
 	{
 		x = center.x - (cols/2 - 0.5) * size;
@@ -181,7 +218,7 @@ function* assembleTen(runtime, power)
 		{
 			const index = i * cols + j + first;
 			singles[index].behaviors.Physics.isEnabled = false;
-			singles[index].behaviors.Tween.startTween("position", [x, y], time, "in-cubic");
+			singles[index].behaviors.Tween.startTween("position", [x, y], time, "in-out-cubic");
 			x += size;
 		}
 		y += size;

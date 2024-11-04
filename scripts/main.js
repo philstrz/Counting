@@ -1,4 +1,5 @@
 import Coroutine from "./utilities/coroutine.js";
+import { gameTick } from "./gameMethods.js";
 
 // Import any other script files here, e.g.:
 // import * as myModule from "./mymodule.js";
@@ -9,8 +10,8 @@ runOnStartup(async runtime =>
 	// Code to run on the loading screen.
 	// Note layouts, objects etc. are not yet available.
 	
-	// Disabled for now
-	//runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
+	// 
+	runtime.addEventListener("beforeprojectstart", () => OnBeforeProjectStart(runtime));
 	
 	// Add viewport dimensions to globals
 	Globals.viewport.width = runtime.viewportWidth;
@@ -50,7 +51,7 @@ async function OnBeforeProjectStart(runtime)
 // Every tick
 function Tick(runtime)
 {
-	
+	gameTick(runtime);
 }
 
 // Before the layout starts
