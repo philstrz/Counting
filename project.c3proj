@@ -101,7 +101,8 @@
 			"SpriteFont",
 			"SingleShadow",
 			"Camera3D",
-			"Reset"
+			"Reset",
+			"CounterSprite"
 		],
 		"subfolders": [
 			{

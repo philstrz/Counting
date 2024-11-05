@@ -489,6 +489,56 @@
 				}
 			],
 			"sid": 596043405150638
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Entrance",
+			"description": "Pop the elements in",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 722317966704905
+						}
+					],
+					"actions": [
+						{
+							"id": "set-size",
+							"objectClass": "CounterSprite",
+							"sid": 498645386714143,
+							"parameters": {
+								"width": "0",
+								"height": "0"
+							}
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "CounterSprite",
+							"sid": 597952118683802,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "size",
+								"end-x": "32",
+								"end-y": "32",
+								"time": "0.25",
+								"ease": "easeincubic",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 543545949044256
+				}
+			],
+			"sid": 409657350877371
 		}
 	],
 	"sid": 778430735063539

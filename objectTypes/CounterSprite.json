@@ -1,29 +1,14 @@
 {
-	"name": "Wall",
+	"name": "CounterSprite",
 	"plugin-id": "Sprite",
-	"sid": 362432710885465,
+	"sid": 136648632818433,
 	"isGlobal": false,
-	"instanceVariables": [
-		{
-			"name": "w",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 696868574031481
-		},
-		{
-			"name": "h",
-			"type": "number",
-			"desc": "",
-			"show": true,
-			"sid": 694427777924029
-		}
-	],
+	"instanceVariables": [],
 	"behaviorTypes": [
 		{
-			"behaviorId": "Physics",
-			"name": "Physics",
-			"sid": 686027875453086
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 230873752339725
 		}
 	],
 	"effectTypes": [],
@@ -32,21 +17,21 @@
 			{
 				"frames": [
 					{
-						"width": 1,
-						"height": 1,
+						"width": 32,
+						"height": 32,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
 						"fileType": "image/png",
-						"imageSpriteId": 8868331,
+						"imageSpriteId": 4958879,
 						"useCollisionPoly": true,
 						"duration": 1,
 						"tag": ""
 					}
 				],
-				"sid": 451681133880453,
+				"sid": 614414393731717,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
