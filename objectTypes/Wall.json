@@ -24,6 +24,11 @@
 			"behaviorId": "Physics",
 			"name": "Physics",
 			"sid": 686027875453086
+		},
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 847319069993001
 		}
 	],
 	"effectTypes": [],

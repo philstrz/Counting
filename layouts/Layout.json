@@ -246,6 +246,11 @@
 								"bullet": false,
 								"enabled": true
 							}
+						},
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
 						}
 					},
 					"instanceFolderItem": {
@@ -299,6 +304,11 @@
 								"bullet": false,
 								"enabled": true
 							}
+						},
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
 						}
 					},
 					"instanceFolderItem": {
@@ -350,6 +360,11 @@
 								"linear-damping": 0,
 								"angular-damping": 0.01,
 								"bullet": false,
+								"enabled": true
+							}
+						},
+						"Tween": {
+							"properties": {
 								"enabled": true
 							}
 						}

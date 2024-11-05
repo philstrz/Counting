@@ -219,6 +219,24 @@
 							"id": "on-tap",
 							"objectClass": "Touch",
 							"sid": 457387183269345
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 326917615706222,
+							"parameters": {
+								"object": "Reset"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-touching-object",
+							"objectClass": "Touch",
+							"sid": 356452193889046,
+							"parameters": {
+								"object": "Single"
+							},
+							"isInverted": true
 						}
 					],
 					"actions": [
@@ -298,6 +316,67 @@
 						}
 					],
 					"sid": 840124157882228
+				},
+				{
+					"eventType": "comment",
+					"text": "Delete balls and  update the count"
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tap-object",
+							"objectClass": "Touch",
+							"sid": 145859830875151,
+							"parameters": {
+								"object": "Single"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "Single",
+							"sid": 644209510000394,
+							"disabled": true
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "Single",
+							"sid": 889830062683180,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "size",
+								"end-x": "0",
+								"end-y": "0",
+								"time": "0.2",
+								"ease": "easeincubic",
+								"destroy-on-complete": "yes",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						}
+					],
+					"sid": 231814320130261
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-destroyed",
+							"objectClass": "Single",
+							"sid": 480511319860380
+						}
+					],
+					"actions": [
+						{
+							"type": "script",
+							"script": "recount(runtime);"
+						}
+					],
+					"sid": 607532859073164
 				}
 			],
 			"sid": 899373275688204
@@ -527,6 +606,38 @@
 								"end-x": "32",
 								"end-y": "32",
 								"time": "0.25",
+								"ease": "easeincubic",
+								"destroy-on-complete": "no",
+								"loop": "no",
+								"ping-pong": "no",
+								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "set-size",
+							"objectClass": "Wall",
+							"sid": 860360293303718,
+							"parameters": {
+								"width": "0",
+								"height": "Wall.h"
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 106341383367710
+						},
+						{
+							"id": "tween-two-properties",
+							"objectClass": "Wall",
+							"sid": 169206198226542,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"\"",
+								"property": "size",
+								"end-x": "Wall.w",
+								"end-y": "Wall.h",
+								"time": "0.5",
 								"ease": "easeincubic",
 								"destroy-on-complete": "no",
 								"loop": "no",

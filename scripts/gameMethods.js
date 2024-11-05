@@ -182,6 +182,15 @@ function checkDigits(runtime)
 	}
 }
 
+// If a ball is removed, recount and recolor the balls
+export function recount(runtime)
+{
+	const balls = runtime.objects.Single.getAllInstances();
+	count = balls.length - 1;
+	
+	
+}
+
 function* assembleTen(runtime, power) 
 {
 	// How long the assembly takes
