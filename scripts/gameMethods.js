@@ -5,8 +5,8 @@ import Coroutine from "./utilities/coroutine.js";
 let count = 0;
 let counter = null;
 
-let digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let previous = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let digits = [0, 0, 0, 0, 0, 0];
+let previous = [0, 0, 0, 0, 0, 0];
 
 const size = 16;
 
@@ -60,8 +60,8 @@ export function reset(runtime)
 	}
 
 	count = 0;
-	digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	previous = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	digits = [0, 0, 0, 0, 0, 0];
+	previous = [0, 0, 0, 0, 0, 0];
 	moveCamera(runtime);
 	updateCounter(runtime, 1);
 }
@@ -80,7 +80,7 @@ export function addN(runtime, n=1)
 
 export function addBall(runtime, x=null, y=null)
 {
-	if (x === null) x = center.x + Math.random() * (bottom - center.y) * (Math.random() * 2 - 1) * 2;
+	if (x === null) x = center.x + Math.random() * (bottom - center.y) * (Math.random() * 2 - 1) * 1.8;
 	if (y === null) y = center.y - (bottom - center.y) * 0.9;
 
 	count += 1;
@@ -91,6 +91,7 @@ export function addBall(runtime, x=null, y=null)
 	ball.colorRgb = Color.RGB(colors[0]);
 	
 	checkDigits(runtime);
+	checkTens(runtime);
 	moveCamera(runtime);
 }
 
@@ -145,6 +146,7 @@ function checkDigits(runtime)
 	let places = 0;
 	let comparison = 1;
 	let number = count;
+	digits = [0, 0, 0, 0, 0, 0];
 	for (let i = digits.length - 1; i >= 0; i--)
 	{
 		if (count >= comparison)
@@ -163,7 +165,10 @@ function checkDigits(runtime)
 	
 	// Update the counter
 	updateCounter(runtime, places);
-	
+}
+
+function checkTens(runtime)
+{
 	// Check for powers of 10
 	let power = 0;
 	for (let i = digits.length - 2; i >=0; i--)
@@ -185,10 +190,39 @@ function checkDigits(runtime)
 // If a ball is removed, recount and recolor the balls
 export function recount(runtime)
 {
-	const balls = runtime.objects.Single.getAllInstances();
-	count = balls.length - 1;
+	const singles = runtime.objects.Single.getAllInstances();
+	count = singles.length - 1;
 	
+	checkDigits(runtime);
+	// Store digits
+	for (let i = 0; i < digits.length; i++)
+	{
+		previous[i] = digits[i];
+	}
+	console.log(previous, digits);
 	
+	// Recolor
+	let power = digits.length;
+	let start = 0;
+	let end = 0;
+	for (let i = 0; i < digits.length; i++)
+	{
+		power--;
+		if (digits[i] > 0)
+		{
+			end = digits[i];
+			for (let j = 0; j < power; j++) end *= 10;
+			end = start + end;
+			
+			for (let j = start; j < end; j++)
+			{
+				singles[j].colorRgb = Color.RGB(colors[power]);
+				//singles[j].colorRgb = Color.RGB(colors[4]);
+				console.log(j);
+			}
+			start = end;
+		}
+	}
 }
 
 function* assembleTen(runtime, power) 
