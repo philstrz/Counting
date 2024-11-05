@@ -362,6 +362,16 @@
 					"sid": 231814320130261
 				},
 				{
+					"eventType": "variable",
+					"name": "index",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 609099861064904
+				},
+				{
 					"eventType": "block",
 					"conditions": [
 						{
@@ -372,8 +382,17 @@
 					],
 					"actions": [
 						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 661452496933863,
+							"parameters": {
+								"variable": "index",
+								"value": "Single.IID"
+							}
+						},
+						{
 							"type": "script",
-							"script": "recount(runtime);"
+							"script": "recount(runtime, localVars.index);"
 						}
 					],
 					"sid": 607532859073164

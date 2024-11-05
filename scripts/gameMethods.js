@@ -188,10 +188,11 @@ function checkTens(runtime)
 }
 
 // If a ball is removed, recount and recolor the balls
-export function recount(runtime)
+export function recount(runtime, skip)
 {
 	const singles = runtime.objects.Single.getAllInstances();
-	count = singles.length - 1;
+	singles.splice(skip, 1);
+ 	count = singles.length;
 	
 	checkDigits(runtime);
 	// Store digits
@@ -218,11 +219,13 @@ export function recount(runtime)
 			{
 				singles[j].colorRgb = Color.RGB(colors[power]);
 				//singles[j].colorRgb = Color.RGB(colors[4]);
-				console.log(j);
 			}
 			start = end;
 		}
 	}
+	
+	// Update camera
+	moveCamera(runtime);
 }
 
 function* assembleTen(runtime, power) 
