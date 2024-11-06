@@ -218,7 +218,6 @@ export function recount(runtime, skip)
 			for (let j = start; j < end; j++)
 			{
 				singles[j].colorRgb = Color.RGB(colors[power]);
-				//singles[j].colorRgb = Color.RGB(colors[4]);
 			}
 			start = end;
 		}

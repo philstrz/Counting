@@ -318,8 +318,44 @@
 					"sid": 840124157882228
 				},
 				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Single",
+							"sid": 393757535656030
+						}
+					],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 705427983143132,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "choose(\"pop_c\", \"pop_d\", \"pop_e\", \"pop_g\", \"pop_a\")",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 522259915398000
+				},
+				{
 					"eventType": "comment",
 					"text": "Delete balls and  update the count"
+				},
+				{
+					"eventType": "variable",
+					"name": "which",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 781107392905471
 				},
 				{
 					"eventType": "block",
@@ -356,6 +392,28 @@
 								"loop": "no",
 								"ping-pong": "no",
 								"repeat-count": "1"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 231009814464823,
+							"parameters": {
+								"variable": "which",
+								"value": "floor(random(2))"
+							}
+						},
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 515091291429018,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "choose(\"unpop_f\", \"unpop_b\")",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
 							}
 						}
 					],
@@ -396,6 +454,34 @@
 						}
 					],
 					"sid": 607532859073164
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Single",
+							"sid": 739140637555549,
+							"parameters": {
+								"object": "Wall"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 870086107223339,
+							"parameters": {
+								"audio-file": "hit",
+								"loop": "not-looping",
+								"volume": "-1000 / ( abs(Single.Physics.VelocityX) + abs(Single.Physics.VelocityY) )",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 543520455289432
 				}
 			],
 			"sid": 899373275688204
