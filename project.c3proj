@@ -315,6 +315,46 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "hit_a.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 233184485953272,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hit_c.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 210100196176104,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hit_d.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 667172069868828,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hit_e.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 762086006491333,
+					"file-info": {
+						"purpose": "none"
+					}
+				},
+				{
+					"name": "hit_g.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 749093777536559,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
 			],
 			"subfolders": []
@@ -433,9 +473,9 @@
 			0
 		],
 		"splashColor": [
-			1,
-			1,
-			1,
+			0.8,
+			0.8,
+			0.8,
 			0
 		],
 		"useThemeColor": false,

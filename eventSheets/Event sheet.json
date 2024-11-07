@@ -469,19 +469,159 @@
 					],
 					"actions": [
 						{
-							"id": "play",
+							"id": "play-by-name",
 							"objectClass": "Audio",
-							"sid": 870086107223339,
+							"sid": 592158606842012,
 							"parameters": {
-								"audio-file": "hit",
+								"folder": "sounds",
+								"audio-file-name": "choose( \"hit_c\", \"hit_d\", \"hit_e\", \"hit_g\", \"hit_a\" )",
 								"loop": "not-looping",
-								"volume": "-1000 / ( abs(Single.Physics.VelocityX) + abs(Single.Physics.VelocityY) )",
-								"stereo-pan": "0",
+								"volume": "-1000 / abs(Single.Physics.VelocityY)",
+								"stereo-pan": "(Single.X - (LayoutWidth / 2) ) / LayoutWidth * 100",
 								"tag-optional": "\"\""
 							}
 						}
 					],
 					"sid": 543520455289432
+				},
+				{
+					"eventType": "variable",
+					"name": "id",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 991954305102637
+				},
+				{
+					"eventType": "variable",
+					"name": "dX",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 903215823534466
+				},
+				{
+					"eventType": "variable",
+					"name": "dY",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 673520632933020
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Single",
+							"sid": 395885671484662,
+							"parameters": {
+								"object": "Single"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 922743023222411,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-highest-lowest-value",
+									"objectClass": "System",
+									"sid": 776022545942088,
+									"parameters": {
+										"object": "Single",
+										"which": "lowest",
+										"expression": "Single.IID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 167078475668853,
+									"parameters": {
+										"variable": "dX",
+										"value": "Single.Physics.VelocityX"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 202820525325413,
+									"parameters": {
+										"variable": "dY",
+										"value": "Single.Physics.VelocityY"
+									}
+								}
+							],
+							"sid": 613356090441650
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-highest-lowest-value",
+									"objectClass": "System",
+									"sid": 406392870271533,
+									"parameters": {
+										"object": "Single",
+										"which": "highest",
+										"expression": "Single.IID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 145901995349700,
+									"parameters": {
+										"variable": "dX",
+										"value": "dX - Single.Physics.VelocityX"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 504555237568876,
+									"parameters": {
+										"variable": "dY",
+										"value": "dY - Single.Physics.VelocityY"
+									}
+								}
+							],
+							"sid": 776028854717597
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "play-by-name",
+									"objectClass": "Audio",
+									"sid": 604324240805931,
+									"parameters": {
+										"folder": "sounds",
+										"audio-file-name": "choose( \"hit_c\", \"hit_d\", \"hit_e\", \"hit_g\", \"hit_a\" )",
+										"loop": "not-looping",
+										"volume": "-1000 / (abs(dX) + abs(dY))",
+										"stereo-pan": "(Single.X - (LayoutWidth / 2) ) / LayoutWidth * 100",
+										"tag-optional": "\"\""
+									}
+								}
+							],
+							"sid": 562755576859736
+						}
+					]
 				}
 			],
 			"sid": 899373275688204
