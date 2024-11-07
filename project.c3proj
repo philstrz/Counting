@@ -484,15 +484,15 @@
 		"fullscreenQuality": "low",
 		"viewportFit": "auto",
 		"backgroundColor": [
-			0,
-			0,
-			0,
+			0.8666666666666667,
+			0.8666666666666667,
+			0.8666666666666667,
 			0
 		],
 		"splashColor": [
-			0.8,
-			0.8,
-			0.8,
+			0.8666666666666667,
+			0.8666666666666667,
+			0.8666666666666667,
 			0
 		],
 		"useThemeColor": false,
@@ -524,5 +524,5 @@
 	},
 	"viewportWidth": 320,
 	"viewportHeight": 200,
-	"firstLayout": "Layout"
+	"firstLayout": "Title"
 }
