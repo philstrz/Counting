@@ -895,6 +895,60 @@
 				}
 			],
 			"sid": 409657350877371
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Additional sound",
+			"description": "Joining singles needs to play a sound",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Gwoop",
+							"sid": 188271775158315
+						}
+					],
+					"actions": [
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 229787620146285,
+							"parameters": {
+								"seconds": "0.25"
+							}
+						},
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 664738740541050,
+							"parameters": {
+								"folder": "sounds",
+								"audio-file-name": "choose(\"join\", \"join_g\")",
+								"loop": "not-looping",
+								"volume": "-20",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "wait-for-previous-actions",
+							"objectClass": "System",
+							"sid": 550943714111526
+						},
+						{
+							"id": "destroy",
+							"objectClass": "Gwoop",
+							"sid": 411457732169811
+						}
+					],
+					"sid": 363772114224404
+				}
+			],
+			"sid": 524148365598905
 		}
 	],
 	"sid": 778430735063539

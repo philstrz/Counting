@@ -177,6 +177,7 @@ function checkTens(runtime)
 		if (digits[i] > previous[i])
 		{			
 			new Coroutine(assembleTen(runtime, power));
+			runtime.objects.Gwoop.createInstance("Debug", 0, 0);
 		}
 	}
 	
